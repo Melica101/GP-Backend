@@ -134,7 +134,7 @@ exports.logIn = (req, res) => {
 
 }*/
 exports.findAUser = (req, res) => {
-    User.findOne({ phonenumber: req.params.phonenumber },
+    User.findOne({ _id: req.params._id },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {
@@ -170,7 +170,7 @@ exports.findAUser = (req, res) => {
 //         });
 // }
 exports.updateUser = (req, res) => {
-    User.findOneAndUpdate({ phonenumber: req.params.phonenumber }, { $set: { Fname:req.body.Fname, Lname: req.body.Lname, phonenumber: req.body.phonenumber } },
+    User.findOneAndUpdate({ _id: req.params._id }, { $set: { Fname:req.body.Fname, Lname: req.body.Lname, phonenumber: req.body.phonenumber } },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {
@@ -181,7 +181,7 @@ exports.updateUser = (req, res) => {
         });
 }
 exports.deleteUser = (req, res) => {
-    User.findOneAndDelete({ phonenumber: req.params.phonenumber },
+    User.findOneAndDelete({ _id: req.params._id },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {

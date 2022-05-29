@@ -6,6 +6,8 @@ exports.addreview=(req, res)=>{
     const reviews = new Reviews({
         comment:req.body.comment,
         rating:req.body.rating,
+        parking_lott:req.body.parking_lott,
+        user:req.body.user,
     });
     reviews.save()
             .then(()=>{
@@ -28,7 +30,7 @@ exports.findAllreviews=(req, res)=>{
 }
 
 exports.deletereviews = (req, res) => {
-    Reviews.findOneAndDelete({ rating:req.params.rating },
+    Reviews.findOneAndDelete({ _id:req.params._id },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {
@@ -40,7 +42,7 @@ exports.deletereviews = (req, res) => {
 }
 
 exports.findreviewsbylocation = (req, res) => {
-    Reviews.findOne({parking_lott:req.params.parking_lott},
+    Reviews.find({parking_lott:req.params.parking_lott},
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {

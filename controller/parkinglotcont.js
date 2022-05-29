@@ -4,6 +4,7 @@ const Parkinglot = require("../models/parkinglot");
 exports.addParkinglot=(req, res)=>{
     console.log("adding location")
     const parkinglot = new Parkinglot({
+        _id:req.body._id,
         parkinglot_name:req.body.parkinglot_name,
         l_name:req.body.l_name,
         latitude:req.body.latitude,
@@ -43,7 +44,7 @@ exports.findParkinglotbylocation=(req,res)=>{
 }
 
 exports.findAParkinglot=(req,res)=>{
-    Parkinglot.findOne({parkinglot_name:req.params.parkinglot_name},
+    Parkinglot.findOne({_id:req.params._id},
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {

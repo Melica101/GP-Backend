@@ -7,8 +7,8 @@ const auth = require('../middleware/auth');
 router.post("/addparkinglot", parkinglotcont.addParkinglot);
 router.get("/getparkinglots", parkinglotcont.findAllparkinglots);
 router.get("/getlocation/:l_name", auth.authenticateToken, parkinglotcont.findParkinglotbylocation);
-router.get("/getparkinglot/:parkinglot_name" , auth.authenticateToken, parkinglotcont.findAParkinglot);
-router.patch("/updateparkinglot/:parkinglot_name", auth.authenticateToken,  parkinglotcont.updateParkinglot);
-router.delete("/deleteparkinglot/:parkinglot_name", auth.authenticateToken, parkinglotcont.deleteParkinglot);
+router.get("/getparkinglot/:_id", parkinglotcont.findAParkinglot);
+router.patch("/updateparkinglot/:_id", auth.authenticateToken,  parkinglotcont.updateParkinglot);
+router.delete("/deleteparkinglot/:_id", auth.authenticateToken, parkinglotcont.deleteParkinglot);
 
 module.exports=router;

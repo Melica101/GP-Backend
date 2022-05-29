@@ -15,6 +15,11 @@ const reviews = Schema({
         type: Schema.Types.ObjectId, 
         ref:"Parkinglot",
         required: true,
+    },
+    user:{
+        type: Schema.Types.ObjectId, 
+        ref:"User",
+        required: true,
     }
     
 });
