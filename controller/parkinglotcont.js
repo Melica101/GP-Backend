@@ -6,8 +6,8 @@ exports.addParkinglot=(req, res)=>{
     const parkinglot = new Parkinglot({
         parkinglot_name:req.body.parkinglot_name,
         l_name:req.body.l_name,
-        latitiude:req.body.latitiude,
-        longtitude:req.body.longtitude,
+        latitude:req.body.latitude,
+        longitude:req.body.longitude,
         total_space:req.body.total_space,
         price:req.body.price,
         security_detail:req.body.security_detail,
@@ -52,14 +52,44 @@ exports.findAParkinglot=(req,res)=>{
             return res.json(msg);
         });
 }
+// exports.updateParkinglot=(req,res)=>{
+//     Parkinglot.findOneAndUpdate({ parkinglot_name:req.params.parkinglot_name },
+//         (err, result) => {
+//             if (err) return res.status(500).json({ msg: err });
+//             const msg = {
+//                 data:result,
+//             };
+//             return res.json(msg);
+//         });
+// }
+// exports.updateParkinglot=(req,res)=>{
+//     Parkinglot.findOneAndUpdate(req.params.parkinglot_name ,req.body,{new:true,runValidators:true},
+//         (err, result) => {
+//             if (err) return res.status(500).json({ msg: err });
+//             const msg = {
+//                 data:result,
+//             };
+//             return res.json(msg);
+
+//         });
+// }
 exports.updateParkinglot=(req,res)=>{
-    Parkinglot.findOneAndUpdate({ parkinglot_name:req.params.parkinglot_name },
+    Parkinglot.findOneAndUpdate({ phonenumber: req.params.phonenumber }, { $set: { 
+        parkinglot_name:req.body.parkinglot_name,
+        l_name:req.body.l_name,
+        latitiude:req.body.latitiude,
+        longtitude:req.body.longtitude,
+        total_space:req.body.total_space,
+        price:req.body.price,
+        security_detail:req.body.security_detail,
+        remaining_space:req.body.remaining_space, } },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {
                 data:result,
             };
             return res.json(msg);
+
         });
 }
 

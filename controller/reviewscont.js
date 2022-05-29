@@ -38,3 +38,14 @@ exports.deletereviews = (req, res) => {
             return res.json(msg);
         });
 }
+
+exports.findreviewsbylocation = (req, res) => {
+    Reviews.findOne({parking_lott:req.params.parking_lott},
+        (err, result) => {
+            if (err) return res.status(500).json({ msg: err });
+            const msg = {
+                data:result,
+            };
+            return res.json(msg);
+        });
+    }

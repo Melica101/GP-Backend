@@ -13,11 +13,11 @@ const parkinglot = new mongoose.Schema({
         type:String,
         required: true,
     },
-    latitiude:{
+    latitude:{
         type:Number,
         required:true,
     },
-    longtitude:{
+    longitude:{
         type:Number,
         required:true,
     },

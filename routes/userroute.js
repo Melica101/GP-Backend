@@ -12,7 +12,7 @@ router.post('/register', userCont.signup);
 router.post('/logIn', userCont.logIn);
 router.post('/verifyotp' ,userCont.verifyotp)
 router.get("/getUsers", userCont.findAllUsers);
-router.get("/getUsers/:phonenumber", auth.authenticateToken, userCont.findAUser);
-router.put("/updateUser/:phonenumber", auth.authenticateToken, userCont.updateUser);
+router.get("/getUsers/:phonenumber", userCont.findAUser);
+router.put("/updateUser/:phonenumber", userCont.updateUser);
 router.delete("/deleteUser/:phonenumber", auth.authenticateToken, userCont.deleteUser);
 module.exports = router;

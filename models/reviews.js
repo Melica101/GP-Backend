@@ -10,6 +10,11 @@ const reviews = Schema({
     rating:{
         type:String,
         required:true,
+    },
+    parking_lott:{
+        type: Schema.Types.ObjectId, 
+        ref:"Parkinglot",
+        required: true,
     }
     
 });

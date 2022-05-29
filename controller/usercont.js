@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const otpGenerator = require('otp-generator')
-const Otp = require("../models/otp");
+// const Otp = require("../models/otp");
 const axios = require("axios");
 const crypto = require("crypto")
 const key = process.env.HASH_SECRET_KEY
@@ -21,10 +21,10 @@ exports.findAllUsers = (req, res) => {
 exports.signup = (req, res) => {
     console.log("register")
     const user = new User({
-        username: req.body.username,
+        Fname: req.body.Fname,
+        Lname:req.body.Lname,
         phonenumber: req.body.phonenumber,
-        email: req.body.email,
-        isAdmin: req.body.isAdmin,
+        
     });
 
     user.save()
@@ -63,7 +63,8 @@ function createotp(params, callback) {
     const otp = otpGenerator.generate(4, { digits: true, alphabets: false, upperCase: false, specialChars: false });
     const tt1 = 5 * 60 * 1000;
     const expires = Date.now() + tt1;
-    const data = `${params.phonenumber}.${expires}`;
+    // const data = `${params.phonenumber}.${expires}`;
+    const data = `${params.phonenumber}.${otp}.${expires}`;
     const hash = crypto.createHmac("sha256", key).update(data).digest("hex");
     const fullHash = `${hash}.${expires}`;
 
@@ -146,15 +147,37 @@ exports.findAUser = (req, res) => {
 }
 
 
+// exports.updateUser = (req, res) => {
+//     User.findOneAndUpdate({ phonenumber: req.params.phonenumber },
+//         (err, result) => {
+//             if (err) return res.status(500).json({ msg: err });
+//             const msg = {
+//                 msg: "user update",
+//                 data: result,
+//             };
+//             return res.json(msg);
+//         });
+// }
+// exports.updateUser = (req, res) => {
+//     User.findOneAndUpdate(req.params.phonenumber ,req.body,{new:true,runValidators:true},
+//         (err, result) => {
+//             if (err) return res.status(500).json({ msg: err });
+//             const msg = {
+//                 data:result,
+//             };
+//             return res.json(msg);
+
+//         });
+// }
 exports.updateUser = (req, res) => {
-    User.findOneAndUpdate({ phonenumber: req.params.phonenumber },
+    User.findOneAndUpdate({ phonenumber: req.params.phonenumber }, { $set: { Fname:req.body.Fname, Lname: req.body.Lname, phonenumber: req.body.phonenumber } },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {
-                msg: "user update",
-                data: result,
+                data:result,
             };
             return res.json(msg);
+
         });
 }
 exports.deleteUser = (req, res) => {

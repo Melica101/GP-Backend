@@ -4,8 +4,8 @@ const parkinglotcont = require("../controller/parkinglotcont");
 const router = express.Router();
 const auth = require('../middleware/auth');
 
-router.post("/addparkinglot",auth.authenticateToken, parkinglotcont.addParkinglot);
-router.get("/getparkinglots",auth.authenticateToken, parkinglotcont.findAllparkinglots);
+router.post("/addparkinglot", parkinglotcont.addParkinglot);
+router.get("/getparkinglots", parkinglotcont.findAllparkinglots);
 router.get("/getlocation/:l_name", auth.authenticateToken, parkinglotcont.findParkinglotbylocation);
 router.get("/getparkinglot/:parkinglot_name" , auth.authenticateToken, parkinglotcont.findAParkinglot);
 router.patch("/updateparkinglot/:parkinglot_name", auth.authenticateToken,  parkinglotcont.updateParkinglot);

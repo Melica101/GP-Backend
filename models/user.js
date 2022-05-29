@@ -3,26 +3,19 @@ const Schema = mongoose.Schema
 const validator = require("validator")
 const jwt = require('jsonwebtoken');
 const user = new Schema({
-    username:{
+    Fname:{
         type:String,
         required:true,
         trim:true,
+    },
+    Lname:{
+        type:String,
+        required:true,
     },
     phonenumber:{
         type:String,
         required:true,
     },
-    email:{
-        type:String,
-        required:true,
-        validate(value){
-            if (!validator.isEmail(value))
-                console.log("error")
-        }
-    },
-    
-    isAdmin: {type: Boolean, default: false}
-
 
 })
 
