@@ -36,7 +36,7 @@ const parkinglot = new mongoose.Schema({
     },
     remaining_space:{
         type:Number,
-        required:true,
+        required:false,
     }
     
 
