@@ -14,5 +14,5 @@ router.post('/verifyotp' ,userCont.verifyotp)
 router.get("/getUsers", userCont.findAllUsers);
 router.get("/getUsers/:_id", userCont.findAUser);
 router.put("/updateUser/:_id", userCont.updateUser);
-router.delete("/deleteUser/:_id", auth.authenticateToken, userCont.deleteUser);
+router.delete("/deleteUser/:_id", userCont.deleteUser);
 module.exports = router;

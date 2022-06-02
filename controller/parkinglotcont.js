@@ -75,7 +75,7 @@ exports.findAParkinglot=(req,res)=>{
 //         });
 // }
 exports.updateParkinglot=(req,res)=>{
-    Parkinglot.findOneAndUpdate({ phonenumber: req.params.phonenumber }, { $set: { 
+    Parkinglot.findOneAndUpdate({ _id: req.params._id }, { $set: { 
         parkinglot_name:req.body.parkinglot_name,
         l_name:req.body.l_name,
         latitiude:req.body.latitiude,
@@ -95,7 +95,7 @@ exports.updateParkinglot=(req,res)=>{
 }
 
 exports.deleteParkinglot = (req, res) => {
-    Parkinglot.findOneAndDelete({ parkinglot_name:req.params.parkinglot_name },
+    Parkinglot.findOneAndDelete({ _id:req.params._id },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {

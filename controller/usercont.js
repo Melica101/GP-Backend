@@ -60,7 +60,7 @@ exports.signup = (req, res) => {
 
 }*/
 function createotp(params, callback) {
-    const otp = otpGenerator.generate(4, { digits: true, alphabets: false, upperCase: false, specialChars: false });
+    const otp = otpGenerator.generate(4, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
     const tt1 = 5 * 60 * 1000;
     const expires = Date.now() + tt1;
     // const data = `${params.phonenumber}.${expires}`;
@@ -68,9 +68,8 @@ function createotp(params, callback) {
     const hash = crypto.createHmac("sha256", key).update(data).digest("hex");
     const fullHash = `${hash}.${expires}`;
 
-    console.log(`your otp ${otp}`);
-    return callback(null, fullHash);
-    
+    console.log(`your otp is ${otp}`);
+    return callback(null, {otp,fullHash});    
 }
 function vverifyotp(params, callback) {
     let [hashValue, expires] = params.hash.split('.');
@@ -94,7 +93,6 @@ exports.verifyotp = (req, res, next) => {
         if (err) {
             return res.status(400).send({
                 message:err,
-                
             })
         }
         return res.status(200).send({
@@ -107,7 +105,6 @@ exports.verifyotp = (req, res, next) => {
 
 }
 exports.logIn = (req, res) => {
-    console.log("Inside login");
     createotp(req.body, (err, result) => {
         if (err) {
             return (err);

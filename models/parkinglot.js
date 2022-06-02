@@ -16,10 +16,12 @@ const parkinglot = new mongoose.Schema({
     latitude:{
         type:Number,
         required:true,
+        unique: true,
     },
     longitude:{
         type:Number,
         required:true,
+        unique: true,
     },
     
     total_space:{

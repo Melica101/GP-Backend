@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 
 router.post("/addreviews", reviewscont.addreview);
 router.get("/getreviews",reviewscont.findAllreviews);
-router.delete("/deletereviews/:_id", auth.authenticateToken, reviewscont.deletereviews);
+router.delete("/deletereviews/:_id", reviewscont.deletereviews);
 router.get("/getreviewsbyparking/:parking_lott",reviewscont.findreviewsbylocation);
 
 module.exports=router;
