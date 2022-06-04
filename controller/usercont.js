@@ -130,8 +130,21 @@ exports.logIn = (req, res) => {
     })
 
 }*/
-exports.findAUser = (req, res) => {
+exports.findAUserbyId = (req, res) => {
     User.findOne({ _id: req.params._id },
+        (err, result) => {
+            if (err) return res.status(500).json({ msg: err });
+            const msg = {
+                // msg: "user ",
+
+                data: result,
+            };
+            return res.json(msg);
+        });
+}
+
+exports.findAUserbyPhone = (req, res) => {
+    User.findOne({ phonenumber: req.params.phonenumber },
         (err, result) => {
             if (err) return res.status(500).json({ msg: err });
             const msg = {

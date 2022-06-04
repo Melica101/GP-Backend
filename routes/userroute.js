@@ -12,7 +12,8 @@ router.post('/register', userCont.signup);
 router.post('/logIn', userCont.logIn);
 router.post('/verifyotp' ,userCont.verifyotp)
 router.get("/getUsers", userCont.findAllUsers);
-router.get("/getUsers/:_id", userCont.findAUser);
+router.get("/getUsers/:_id", userCont.findAUserbyId);
+router.get("/getUser/:phonenumber", userCont.findAUserbyPhone);
 router.put("/updateUser/:_id", userCont.updateUser);
 router.delete("/deleteUser/:_id", userCont.deleteUser);
 module.exports = router;
