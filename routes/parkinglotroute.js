@@ -1,5 +1,4 @@
 const express = require("express");
-//const Location = require("../models/location");
 const parkinglotcont = require("../controller/parkinglotcont");
 const router = express.Router();
 const auth = require('../middleware/auth');
