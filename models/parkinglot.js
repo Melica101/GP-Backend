@@ -8,22 +8,22 @@ const parkinglot = new mongoose.Schema({
         required: true,
         trim:true,
         unique: true,
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z\-]+$/i.test(v);
-            },
-            message: props => `${props.value} is not a valid name`
-        }
+        // validate: {
+        //     validator: function (v) {
+        //         return /^[a-zA-Z\-]+$/i.test(v);
+        //     },
+        //     message: props => `${props.value} is not a valid name`
+        // }
     },
     l_name:{
         type:String,
         required: true,
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z\-]+$/i.test(v);
-            },
-            message: props => `${props.value} is not a valid name`
-        }
+        // validate: {
+        //     validator: function (v) {
+        //         return /^[a-zA-Z\-]+$/i.test(v);
+        //     },
+        //     message: props => `${props.value} is not a valid name`
+        // }
     },
     latitude:{
         type:Number,
